@@ -509,19 +509,23 @@
         <button class="close-btn" @click="closeModal">&times;</button>
         <div class="modal-product">
           <div class="product-img large">
-  <div class="image-gallery">
-    <img 
-      v-for="(img, index) in selectedProduct.images" 
-      :key="index" 
-      :src="img" 
-      :alt="selectedProduct.name + ' imagen ' + (index + 1)">
-  </div>
+  
           </div>
           
           </div>
           <h2>{{ selectedProduct.name }}</h2>
           <p class="description">{{ selectedProduct.description }}</p>
           <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
+
+
+
+        <div class="image-gallery">
+    <img 
+      v-for="(img, index) in selectedProduct.images" 
+      :key="index" 
+      :src="img" 
+      :alt="selectedProduct.name + ' imagen ' + (index + 1)">
+        </div>
 
 
           
