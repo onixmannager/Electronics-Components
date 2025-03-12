@@ -510,27 +510,37 @@
       <div class="modal-content">
         <button class="close-btn" @click="closeModal">&times;</button>
         <div class="modal-product">
-          <div class="product-img large">
-            <img v-if="selectedProduct.imgUrl" :src="selectedProduct.imgUrl" :alt="selectedProduct.name" width="150" height="150">
-            <svg v-else :width="150" :height="150" viewBox="0 0 100 100">
-              <circle :cx="50" :cy="50" :r="45" :fill="selectedProduct.color" />
-              <path :d="selectedProduct.svgPath" fill="#fff" />
-            </svg>
+          <!-- Dentro del modal-content -->
+<div class="modal-product">
+  <!-- Elimina esta sección de imagen estática -->
+  <!-- <div class="product-img large">
+    <img v-if="selectedProduct.imgUrl"...>
+    <svg v-else...>
+  </div> -->
+  
+  <!-- Añade la galería aquí -->
+  <div class="image-gallery-container">
+    <div class="image-gallery">
+      <img 
+        v-for="(img, index) in selectedProduct.images" 
+        :key="index" 
+        :src="img" 
+        :alt="selectedProduct.name + ' imagen ' + (index + 1)"
+        @click="switchMainImage(img)"
+        :class="{active: mainImage === img}">
+    </div>
+    <div class="main-image-container">
+      <img :src="mainImage" :alt="selectedProduct.name">
+    </div>
+  </div>
+
           </div>
           <h2>{{ selectedProduct.name }}</h2>
           <p class="description">{{ selectedProduct.description }}</p>
           <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
 
 
-          <div class="product-img large">
-  <div class="image-gallery">
-    <img 
-      v-for="(img, index) in selectedProduct.images" 
-      :key="index" 
-      :src="img" 
-      :alt="selectedProduct.name + ' imagen ' + (index + 1)">
-  </div>
-          </div>
+        
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
          <div class="size-selection" v-if="![1,2,3,4].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
@@ -669,11 +679,11 @@
           },
           { 
             id: 3,
-            name: 'Vestido floral',
-            description: 'Vestido ligero con estampado floral',
+            name: 'Tv 24 Pulgadas',
+            description: 'Tv 24 Pulgadas NO Smart Tv',
             price: 45.00,
             categoryId: 2,
-            subcategoryId: 21,
+            subcategoryId: 22,
             color: '#e74c3c',
             svgPath: 'M25,20 L75,20 L75,80 L25,80 Z',
             imgUrl: 'https://via.placeholder.com/150?text=Vestido+floral'
@@ -687,7 +697,7 @@
             subcategoryId: 31,
             color: '#9b59b6',
             svgPath: 'M30,25 L70,25 L70,75 L30,75 Z',
-            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/robot1.jpg'
+            imgUrl: 'https://via.placeholder.com/150?text=Blusa+elegante'
           },
           { 
             id: 5,
