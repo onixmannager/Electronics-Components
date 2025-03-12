@@ -391,7 +391,12 @@
 
 
 
-    .image-gallery {
+  .image-gallery-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-gallery {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -503,23 +508,36 @@
       </div>
     </main>
     
-    <!-- Modal de detalle de producto -->
-    <div class="modal" v-if="selectedProduct" @click.self="closeModal">
-      <div class="modal-content">
-        <button class="close-btn" @click="closeModal">&times;</button>
-        <div class="modal-product">
-          <div class="product-img large">
-            <img v-if="selectedProduct.imgUrl" :src="selectedProduct.imgUrl" :alt="selectedProduct.name" width="150" height="150">
-            <svg v-else :width="150" :height="150" viewBox="0 0 100 100">
-              <circle :cx="50" :cy="50" :r="45" :fill="selectedProduct.color" />
-              <path :d="selectedProduct.svgPath" fill="#fff" />
-            </svg>
-          </div>
-          <h2>{{ selectedProduct.name }}</h2>
-          <p class="description">{{ selectedProduct.description }}</p>
-          <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
+    <div class="modal-product">
+  <!-- 1. Galería de imágenes scrollable en la parte superior -->
+  <div class="image-gallery-container">
+    <div class="image-gallery">
+      <img 
+        v-for="(img, index) in selectedProduct.images" 
+        :key="index" 
+        :src="img" 
+        :alt="selectedProduct.name + ' imagen ' + (index + 1)">
+    </div>
+  </div>
 
+  <!-- 2. Título del producto -->
+  <h2>{{ selectedProduct.name }}</h2>
 
+  <!-- 3. Descripción del producto -->
+  <p class="description">{{ selectedProduct.description }}</p>
+
+  <!-- 4. Control de cantidad -->
+  <div class="quantity-control">
+    <button @click="decreaseQuantity">-</button>
+    <span>{{ quantity }}</span>
+    <button @click="increaseQuantity">+</button>
+  </div>
+
+  <!-- 5. Botón para añadir al carrito -->
+  <button class="add-to-cart" @click="addToCart">
+    Añadir al carrito - {{ formatPrice(selectedProduct.price * quantity) }}
+  </button>
+    </div>
           <div class="product-img large">
   <div class="image-gallery">
     <img 
