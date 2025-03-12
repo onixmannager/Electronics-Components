@@ -388,6 +388,23 @@
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 40;
     }
+
+
+
+    .image-gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  width: 100%;
+  padding: 10px;
+}
+.image-gallery img {
+  flex-shrink: 0;
+  border-radius: var(--border-radius);
+}
+
+
+    
     @media (max-width: 767px) {
       .products {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -498,6 +515,17 @@
           <h2>{{ selectedProduct.name }}</h2>
           <p class="description">{{ selectedProduct.description }}</p>
           <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
+
+
+          <!-- Galería de imágenes del producto -->
+<div class="product-img large image-gallery">
+  <img 
+    v-for="(img, index) in selectedProduct.images" 
+    :key="index" 
+    :src="img" 
+    :alt="selectedProduct.name + ' imagen ' + (index + 1)"
+    width="150" height="150">
+</div>
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
          <div class="size-selection" v-if="![1,2,3,].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
@@ -607,17 +635,19 @@
         ]);
         // Productos (con propiedad imgUrl agregada)
         const products = ref([
-          { 
-            id: 1,
-            name: 'Ordenador Portatil 32G 4TB',
-            description: 'Ordenador Portatil de 32G y 4TB de almacenamiento<br>Producto en Stock',
-            price: 140,
-            categoryId: 1,
-            subcategoryId: 12,
-            color: '#3498db',
-        
-            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_123905_AliExpress.jpg'
-          },
+  { 
+    id: 1,
+    name: 'Ordenador Portatil 32G 4TB',
+    description: 'Ordenador Portatil de 32G y 4TB de almacenamiento<br>Producto en Stock',
+    price: 140,
+    categoryId: 1,
+    subcategoryId: 12,
+    color: '#3498db',
+    images: [
+      'https://ruta-a-la-imagen1.jpg',
+      'https://ruta-a-la-imagen2.jpg'
+    ]
+  },
           { 
             id: 2,
             name: 'Smart TV 32 Pulgadas',
