@@ -410,6 +410,34 @@
 }
 
 
+       .footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2rem;
+      background: var(--text-color);
+      color: white;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--accent-color);
+    }
+
+
     
     @media (max-width: 767px) {
       .products {
@@ -927,5 +955,16 @@
       }
     }).mount('#app');
   </script>
+
+   <div class="footer">
+      <nav class="footer-nav">
+        <a href="privacidad">Privacidad</a>
+        <a href="condiciones">Términos</a>
+        <a href="soporte">Soporte</a>
+        <a href="index">Inicio</a>
+      </nav>
+      <p>&copy; 2024 Electronics Components. Todos los derechos reservados.</p>
+    </div>
+</div>
 </body>
 </html>
