@@ -445,6 +445,8 @@
           <circle cx="15" cy="18" r="1.5" fill="#e74c3c"/>
           <circle cx="25" cy="18" r="1.5" fill="#e74c3c"/>
         </svg>
+        
+        
         <h1>Electronics Components</h1>
       </div>
       <div class="search-bar">
@@ -531,7 +533,7 @@
           </div>
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
-         <div class="size-selection" v-if="![1,2,3,].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
+         <div class="size-selection" v-if="![1,2,3,4].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
           <label for="sizeSelect">Talla:</label>
           <select id="sizeSelect" v-model="selectedSize">
           <option disabled value="">Seleccione talla</option>
@@ -612,27 +614,28 @@
         // Categorías: "Inicio" muestra todos los productos
         const categories = ref([
           { id: 0, name: 'Inicio', icon: 'fas fa-home' },
-          { id: 1, name: 'Pc y Portatiles', icon: 'fas fa-male', subcategories: [
+          { id: 1, name: 'Pc y Tablets', icon: 'fas fa-desktop', subcategories: [
               { id: 11, name: 'Pc' },
               { id: 12, name: 'Portatiles' },
+                 { id: 99, name: 'Tablets' }
               
             ]
           },
-          { id: 2, name: 'TV y Smarts Tv', icon: 'fas fa-female', subcategories: [
+          { id: 2, name: 'TV y Smarts Tv', icon: 'fas fa-tv', subcategories: [
               { id: 21, name: 'Smarts Tv' },
               { id: 22, name: 'Tv' },
               
             ]
           },
-          { id: 3, name: 'Calzado', icon: 'fas fa-shoe-prints', subcategories: [
-              { id: 31, name: 'Deportivos' },
-              { id: 32, name: 'Elegantes' }
+          { id: 3, name: 'Electrodomesticos', icon: 'fas fa-burn', subcategories: [
+              { id: 31, name: 'Robots' },
+              { id: 32, name: 'Aspiradoras' }
             ]
           },
           { id: 4, name: 'Accesorios', icon: 'fas fa-gem', subcategories: [
-              { id: 41, name: 'Bolsos' },
-              { id: 42, name: 'Joyería' },
-              { id: 43, name: 'Sombreros' }
+              { id: 41, name: 'Gafas Inteligentes' },
+              { id: 42, name: 'Llaveros NFC' },
+              { id: 43, name: 'Chips NCF' }
             ]
           }
         ]);
@@ -650,6 +653,7 @@
     categoryId: 1,
     subcategoryId: 12,
     color: '#3498db',
+    imgUrl:  'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_123905_AliExpress.jpg'
     
   },
           { 
@@ -676,11 +680,11 @@
           },
           { 
             id: 4,
-            name: 'Blusa elegante',
-            description: 'Blusa de seda, ideal para ocasiones formales',
-            price: 30.00,
-            categoryId: 2,
-            subcategoryId: 22,
+            name: 'Robot Inteligente',
+            description: 'Robit Aspirador Inteligente',
+            price: 49.99,
+            categoryId: 3,
+            subcategoryId: 31,
             color: '#9b59b6',
             svgPath: 'M30,25 L70,25 L70,75 L30,75 Z',
             imgUrl: 'https://via.placeholder.com/150?text=Blusa+elegante'
