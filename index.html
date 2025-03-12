@@ -500,13 +500,13 @@
           <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
-          <div class="size-selection" v-if="getSizeOptions(selectedProduct).length">
-            <label for="sizeSelect">Talla:</label>
-            <select id="sizeSelect" v-model="selectedSize">
-              <option disabled value="">Seleccione talla</option>
-              <option v-for="size in getSizeOptions(selectedProduct)" :key="size" :value="size">{{ size }}</option>
-            </select>
-          </div>
+         <div class="size-selection" v-if="![3,4].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
+          <label for="sizeSelect">Talla:</label>
+          <select id="sizeSelect" v-model="selectedSize">
+          <option disabled value="">Seleccione talla</option>
+          <option v-for="size in getSizeOptions(selectedProduct)" :key="size" :value="size">{{ size }}</option>
+          </select>
+         </div>
           
           <!-- Control de cantidad -->
           <div class="quantity-control">
@@ -759,13 +759,14 @@
         // Función para obtener las tallas disponibles según el producto
         function getSizeOptions(product) {
           if (!product) return [];
+          if (product.id === 3) return []; // Evita mostrar tallas para este producto
           if (product.categoryId === 1 || product.categoryId === 2) { // Ropa
-            return ['XS', 'S', 'M', 'L', 'XL'];
-          } else if (product.categoryId === 3) { // Calzado
-            return [36, 37, 38, 39, 40, 41, 42];
-          }
-          return [];
-        }
+          return ['XS', 'S', 'M', 'L', 'XL'];
+         } else if (product.categoryId === 3) { // Calzado
+         return [36, 37, 38, 39, 40, 41, 42];
+         }
+         return [];
+       }
         // Función para añadir al carrito comprobando la selección de talla (si es necesario)
         function addToCart() {
           if (getSizeOptions(selectedProduct.value).length > 0 && !selectedSize.value) {
