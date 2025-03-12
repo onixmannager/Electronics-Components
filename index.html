@@ -393,14 +393,17 @@
 
     .image-gallery {
   display: flex;
-  gap: 10px;
   overflow-x: auto;
-  width: 100%;
-  padding: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
+
 .image-gallery img {
-  flex-shrink: 0;
-  border-radius: var(--border-radius);
+  flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  scroll-snap-align: center;
 }
 
 
@@ -517,15 +520,15 @@
           <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
 
 
-          <!-- Galería de imágenes del producto -->
-<div class="product-img large image-gallery">
-  <img 
-    v-for="(img, index) in selectedProduct.images" 
-    :key="index" 
-    :src="img" 
-    :alt="selectedProduct.name + ' imagen ' + (index + 1)"
-    width="150" height="150">
-</div>
+          <div class="product-img large">
+  <div class="image-gallery">
+    <img 
+      v-for="(img, index) in selectedProduct.images" 
+      :key="index" 
+      :src="img" 
+      :alt="selectedProduct.name + ' imagen ' + (index + 1)">
+  </div>
+          </div>
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
          <div class="size-selection" v-if="![1,2,3,].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
