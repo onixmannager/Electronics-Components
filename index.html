@@ -468,7 +468,8 @@
           class="product-card"
           @click="showProductDetails(product)">
           <div class="product-img">
-            <svg :width="100" :height="100" viewBox="0 0 100 100">
+            <img v-if="product.imgUrl" :src="product.imgUrl" :alt="product.name" width="100" height="100">
+            <svg v-else :width="100" :height="100" viewBox="0 0 100 100">
               <circle :cx="50" :cy="50" :r="45" :fill="product.color" />
               <path :d="product.svgPath" fill="#fff" />
             </svg>
@@ -488,7 +489,8 @@
         <button class="close-btn" @click="closeModal">&times;</button>
         <div class="modal-product">
           <div class="product-img large">
-            <svg :width="150" :height="150" viewBox="0 0 100 100">
+            <img v-if="selectedProduct.imgUrl" :src="selectedProduct.imgUrl" :alt="selectedProduct.name" width="150" height="150">
+            <svg v-else :width="150" :height="150" viewBox="0 0 100 100">
               <circle :cx="50" :cy="50" :r="45" :fill="selectedProduct.color" />
               <path :d="selectedProduct.svgPath" fill="#fff" />
             </svg>
@@ -603,7 +605,7 @@
             ]
           }
         ]);
-        // Productos
+        // Productos (con propiedad imgUrl agregada)
         const products = ref([
           { 
             id: 1,
@@ -613,7 +615,8 @@
             categoryId: 1,
             subcategoryId: 11,
             color: '#3498db',
-            svgPath: 'M20,20 L80,20 L80,80 L20,80 Z'
+            svgPath: 'M20,20 L80,20 L80,80 L20,80 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Camisa'
           },
           { 
             id: 2,
@@ -623,7 +626,8 @@
             categoryId: 1,
             subcategoryId: 12,
             color: '#2ecc71',
-            svgPath: 'M30,30 L70,30 L70,70 L30,70 Z'
+            svgPath: 'M30,30 L70,30 L70,70 L30,70 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Pantal%C3%B3n+casual'
           },
           { 
             id: 3,
@@ -633,7 +637,8 @@
             categoryId: 2,
             subcategoryId: 21,
             color: '#e74c3c',
-            svgPath: 'M25,20 L75,20 L75,80 L25,80 Z'
+            svgPath: 'M25,20 L75,20 L75,80 L25,80 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Vestido+floral'
           },
           { 
             id: 4,
@@ -643,7 +648,8 @@
             categoryId: 2,
             subcategoryId: 22,
             color: '#9b59b6',
-            svgPath: 'M30,25 L70,25 L70,75 L30,75 Z'
+            svgPath: 'M30,25 L70,25 L70,75 L30,75 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Blusa+elegante'
           },
           { 
             id: 5,
@@ -653,7 +659,8 @@
             categoryId: 3,
             subcategoryId: 31,
             color: '#f1c40f',
-            svgPath: 'M35,30 L65,30 L65,70 L35,70 Z'
+            svgPath: 'M35,30 L65,30 L65,70 L35,70 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Zapatillas+deportivas'
           },
           { 
             id: 6,
@@ -663,7 +670,8 @@
             categoryId: 3,
             subcategoryId: 32,
             color: '#34495e',
-            svgPath: 'M40,35 L60,35 L60,65 L40,65 Z'
+            svgPath: 'M40,35 L60,35 L60,65 L40,65 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Zapatos+formales'
           },
           { 
             id: 7,
@@ -673,7 +681,8 @@
             categoryId: 4,
             subcategoryId: 41,
             color: '#8e44ad',
-            svgPath: 'M30,40 L70,40 L70,60 L30,60 Z'
+            svgPath: 'M30,40 L70,40 L70,60 L30,60 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Bolso+de+cuero'
           },
           { 
             id: 8,
@@ -683,7 +692,8 @@
             categoryId: 4,
             subcategoryId: 43,
             color: '#f39c12',
-            svgPath: 'M25,35 L75,35 L75,65 L25,65 Z'
+            svgPath: 'M25,35 L75,35 L75,65 L25,65 Z',
+            imgUrl: 'https://via.placeholder.com/150?text=Sombrero+de+paja'
           }
         ]);
         // Variables reactivas
