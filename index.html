@@ -663,6 +663,7 @@
     categoryId: 1,
     subcategoryId: 12,
     color: '#3498db',
+    svgPath: 'M30,30 L70,30 L70,70 L30,70 Z',
     imgUrl:  'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_123905_AliExpress.jpg'
     
   },
@@ -804,17 +805,19 @@
         function decreaseQuantity() {
           if (quantity.value > 1) quantity.value--;
         }
+        
+        
         // Función para obtener las tallas disponibles según el producto
         function getSizeOptions(product) {
-          if (!product) return [];
-          if (product.id === 3) return []; // Evita mostrar tallas para este producto
-          if (product.categoryId === 1 || product.categoryId === 2) { // Ropa
-          return ['XS', 'S', 'M', 'L', 'XL'];
-         } else if (product.categoryId === 3) { // Calzado
-         return [36, 37, 38, 39, 40, 41, 42];
-         }
-         return [];
-       }
+  if (!product) return [];
+  if (product.id === 1,2,3,4) return []; // Evita mostrar tallas para este producto
+  if (product.categoryId === 1,2,3,4 || product.categoryId === 1,2,3,4) { // Ropa
+    return ['XS', 'S', 'M', 'L', 'XL'];
+  } else if (product.categoryId === 1,2,3,4) { // Calzado
+    return [36, 37, 38, 39, 40, 41, 42];
+  }
+  return [];
+}
         // Función para añadir al carrito comprobando la selección de talla (si es necesario)
         function addToCart() {
           if (getSizeOptions(selectedProduct.value).length > 0 && !selectedSize.value) {
