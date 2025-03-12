@@ -509,25 +509,26 @@
         <button class="close-btn" @click="closeModal">&times;</button>
         <div class="modal-product">
           <div class="product-img large">
-  
+            <img v-if="selectedProduct.imgUrl" :src="selectedProduct.imgUrl" :alt="selectedProduct.name" width="150" height="150">
+            <svg v-else :width="150" :height="150" viewBox="0 0 100 100">
+              <circle :cx="50" :cy="50" :r="45" :fill="selectedProduct.color" />
+              <path :d="selectedProduct.svgPath" fill="#fff" />
+            </svg>
           </div>
-          
-          </div>
-        <div class="image-gallery">
+          <h2>{{ selectedProduct.name }}</h2>
+          <p class="description">{{ selectedProduct.description }}</p>
+          <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
+
+
+          <div class="product-img large">
+  <div class="image-gallery">
     <img 
       v-for="(img, index) in selectedProduct.images" 
       :key="index" 
       :src="img" 
       :alt="selectedProduct.name + ' imagen ' + (index + 1)">
-        
-          <h2>{{ selectedProduct.name }}</h2>
-          <p class="description">{{ selectedProduct.description }}</p>
-          <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
-
-       </div>
-
-
-          
+  </div>
+          </div>
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
          <div class="size-selection" v-if="![1,2,3,].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
