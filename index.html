@@ -13,6 +13,10 @@
     }
   </script>
   <style>
+  /* Agrega esto al CSS */
+[v-cloak] {
+  display: none;
+}
     :root {
       --primary-color: #e74c3c;
       --secondary-color: #f39c12;
@@ -28,6 +32,8 @@
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    
+    
     body {
       background-color: #f5f5f5;
       color: var(--text-color);
@@ -170,7 +176,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 0px;
       background-color: #f9f9f9;
     }
     .product-info {
@@ -409,12 +415,11 @@
   scroll-snap-align: center;
 }
 
-
-       .footer {
+   .footer {
       text-align: center;
       margin-top: 4rem;
       padding: 2rem;
-      background: var(--text-color);
+      background: var(--primary-color);
       color: white;
       border-radius: 0 0 16px 16px;
     }
@@ -466,6 +471,8 @@
   </style>
 </head>
 <body>
+<!-- En el div raíz -->
+<div id="app" v-cloak>
   <div id="app">
     <header>
       <div class="logo">
@@ -479,7 +486,11 @@
         
         
         <h1>Electronics Components</h1>
+        
       </div>
+      
+      
+      
       <div class="search-bar">
         <input type="text" placeholder="Buscar productos..." v-model="searchQuery">
       </div>
@@ -488,6 +499,9 @@
         <span class="cart-count" v-if="cartItems.length > 0">{{ cartItems.length }}</span>
       </div>
     </header>
+    
+  
+      
     
     <main>
       <!-- Categorías -->
@@ -512,6 +526,7 @@
           {{ sub.name }}
         </button>
       </div>
+         
       
       <!-- Productos: Si la categoría es "Inicio" se muestran todos los productos; de lo contrario, se filtran -->
       <div class="products">
@@ -540,7 +555,7 @@
     <div class="modal" v-if="selectedProduct" @click.self="closeModal">
       <div class="modal-content">
         <button class="close-btn" @click="closeModal">&times;</button>
-        <div class="modal-product">
+       
           <!-- Dentro del modal-content -->
 <div class="modal-product">
   <!-- Elimina esta sección de imagen estática -->
@@ -560,18 +575,14 @@
         @click="switchMainImage(img)"
         :class="{active: mainImage === img}">
     </div>
-    <div class="main-image-container">
-      
+    <div class="main-image-container">    
     </div>
-  </div>
-
+  
           </div>
           <h2>{{ selectedProduct.name }}</h2>
           <p class="description">{{ selectedProduct.description }}</p>
           <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
-
-
-        
+      
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
          <div class="size-selection" v-if="![1,2,3,4].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
@@ -630,7 +641,7 @@
           <span>{{ formatPrice(cartSubtotal) }}</span>
         </div>
         <div class="summary-row">
-          <span>IVA (10%):</span>
+          <span>IVA (21%):</span>
           <span>{{ formatPrice(cartTax) }}</span>
         </div>
         <div class="summary-row total">
@@ -656,15 +667,17 @@
         const categories = ref([
           { id: 0, name: 'Inicio', icon: 'fas fa-home' },
           { id: 1, name: 'Pc y Tablets', icon: 'fas fa-desktop', subcategories: [
-              { id: 11, name: 'Pc' },
+              { id: 11, name: 'Pc Mesa' },
               { id: 12, name: 'Portatiles' },
-                 { id: 99, name: 'Tablets' }
+                { id: 100, name: 'SmartPhone' },
+                 { id: 99, name: 'Tablets' } 
+                
               
             ]
           },
           { id: 2, name: 'TV y Smarts Tv', icon: 'fas fa-tv', subcategories: [
               { id: 21, name: 'Smarts Tv' },
-              { id: 22, name: 'Tv' },
+              { id: 22, name: 'Pantallas' },
               
             ]
           },
@@ -689,7 +702,7 @@
       'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_123905_AliExpress.jpg'
     ],
     name: 'Ordenador Portatil 32G 4TB',
-    description: 'Ordenador Portatil de 32G y 4TB de almacenamiento<br>Producto en Stock',
+    description: 'Ordenador Portatil de 32G y 4TB ',
     price: 140,
     categoryId: 1,
     subcategoryId: 12,
@@ -698,36 +711,39 @@
     imgUrl:  'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_123905_AliExpress.jpg'
     
   },
-          { 
-            id: 2,
-            images: [
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_182001_AliExpress.jpg',
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_182001_AliExpress.jpg'
-    ],
-            name: 'Smart TV 32 Pulgadas',
-            description: 'Smart Tv de 32 Pulgadas<br> Producto en Stock',
-            price: 199,
-            categoryId: 2,
-            subcategoryId: 21,
-            color: '#2ecc71',
-            svgPath: 'M30,30 L70,30 L70,70 L30,70 Z',
-            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_182001_AliExpress.jpg'
-          },
+          
           { 
             id: 3,
             images: [
       'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_201800_AliExpress.jpg',
       'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_201800_AliExpress.jpg'
     ],
-            name: 'Tv 24 Pulgadas',
+            name: 'Tv Pantalla 24 ',
             description: 'Tv 24 Pulgadas NO Smart Tv',
             price: 119.00,
             categoryId: 2,
-            subcategoryId: 22,
+            subcategoryId: 21,
             color: '#e74c3c',
             svgPath: 'M25,20 L75,20 L75,80 L25,80 Z',
             imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_201800_AliExpress.jpg'
           },
+          
+          { 
+            id: 2,
+            images: [
+      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_182001_AliExpress.jpg',
+      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_182001_AliExpress.jpg'
+    ],
+            name: 'Smart Tv 32 ',
+            description: 'Smart Tv de 32 Pulgadas',
+            price: 199,
+            categoryId: 2,
+            subcategoryId: 22,
+            color: '#2ecc71',
+            svgPath: 'M30,30 L70,30 L70,70 L30,70 Z',
+            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/Screenshot_20250311_182001_AliExpress.jpg'
+          },
+          
           { 
             id: 4,
             images: [
@@ -746,11 +762,6 @@
           },
           { 
             id: 5,
-            images: [
-            
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/llavero.jpg',
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/llavero.jpg'
-    ],
             name: 'Llaveros NFC',
             description: 'Llaveros inteligentes con chip NFC',
             price: 9.00,
@@ -758,31 +769,21 @@
             subcategoryId: 42,
             color: '#f1c40f',
             svgPath: 'M35,30 L65,30 L65,70 L35,70 Z',
-            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/llavero.jpg'
+            imgUrl: 'https://via.placeholder.com/150?text=Zapatillas+deportivas'
           },
           { 
             id: 6,
-            images: [
-            
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/aspirador.jpg',
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/aspirador.jpg'
-    ],
-            name: 'Aspirador Portatil ',
-            description: 'Aspirador Portatil',
+            name: 'Aspiradora Fuyitsu ',
+            description: 'Aspiradora Fuyitsu',
             price: 69.00,
             categoryId: 3,
             subcategoryId: 32,
             color: '#34495e',
             svgPath: 'M40,35 L60,35 L60,65 L40,65 Z',
-            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/aspirador.jpg'
+            imgUrl: 'https://via.placeholder.com/150?text=Zapatos+formales'
           },
           { 
             id: 7,
-            images: [
-            
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/gafas.jpg',
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/gafas.jpg'
-    ],
             name: 'Gafas Inteligentes',
             description: 'Gafas inteligentes',
             price: 23.00,
@@ -790,15 +791,10 @@
             subcategoryId: 41,
             color: '#8e44ad',
             svgPath: 'M30,40 L70,40 L70,60 L30,60 Z',
-            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/gafas.jpg'
+            imgUrl: 'https://via.placeholder.com/150?text=Bolso+de+cuero'
           },
           { 
             id: 8,
-            images: [
-            
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/chip.jpg',
-      'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/chip.jpg'
-    ],
             name: 'Chips NFC',
             description:'Chips NFC',
             price: 14.00,
@@ -806,7 +802,7 @@
             subcategoryId: 43,
             color: '#f39c12',
             svgPath: 'M25,35 L75,35 L75,65 L25,65 Z',
-            imgUrl: 'https://raw.githubusercontent.com/onixmannager/Electronics-Components/refs/heads/main/chip.jpg'
+            imgUrl: 'https://via.placeholder.com/150?text=Sombrero+de+paja'
           }
         ]);
         // Variables reactivas
@@ -844,7 +840,7 @@
         const cartSubtotal = computed(() => {
           return cartItems.value.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
         });
-        const cartTax = computed(() => cartSubtotal.value * 0.1);
+       const cartTax = computed(() => cartSubtotal.value * 0.21);
         const cartTotal = computed(() => cartSubtotal.value + cartTax.value);
         
         // Funciones de selección y navegación
@@ -874,10 +870,10 @@
         // Función para obtener las tallas disponibles según el producto
         function getSizeOptions(product) {
   if (!product) return [];
-  if (product.id === 1,2,3,4) return []; // Evita mostrar tallas para este producto
-  if (product.categoryId === 1,2,3,4 || product.categoryId === 1,2,3,4) { // Ropa
+  if ([1, 2, 3, 4,5,6,7,8,9].includes(product.id)) return []; // Evita mostrar tallas para este producto
+  if (product.categoryId === 1,2,3,4,5,6,7,8,9|| product.categoryId === 1,2,3,4,5,6,7,9,9) { // Ropa
     return ['XS', 'S', 'M', 'L', 'XL'];
-  } else if (product.categoryId === 1,2,3,4) { // Calzado
+  } else if (product.categoryId === 1,2,3,4,5,6,7,8,9) { // Calzado
     return [36, 37, 38, 39, 40, 41, 42];
   }
   return [];
@@ -955,16 +951,18 @@
       }
     }).mount('#app');
   </script>
-
-   <div class="footer">
+  
+    <div class="footer">
       <nav class="footer-nav">
         <a href="privacidad">Privacidad</a>
         <a href="condiciones">Términos</a>
         <a href="soporte">Soporte</a>
-        <a href="index">Inicio</a>
+        
       </nav>
-      <p>&copy; 2024 Electronics Components. Todos los derechos reservados.</p>
+      <p>&copy; 2024 Electronics Components de Tecnologías Onix. Todos los derechos reservados.</p>
     </div>
-</div>
+  </div>
+</body>
+</html>
 </body>
 </html>
