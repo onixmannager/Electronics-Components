@@ -500,7 +500,7 @@
           <p class="price">{{ formatPrice(selectedProduct.price) }}</p>
           
           <!-- Menú de selección de talla (se muestra solo si el producto tiene tallas disponibles) -->
-         <div class="size-selection" v-if="![1,2,3,4,5,6,7,].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
+         <div class="size-selection" v-if="![1,2,3,].includes(selectedProduct.id) && getSizeOptions(selectedProduct).length">
           <label for="sizeSelect">Talla:</label>
           <select id="sizeSelect" v-model="selectedSize">
           <option disabled value="">Seleccione talla</option>
