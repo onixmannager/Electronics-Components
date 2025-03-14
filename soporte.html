@@ -6,11 +6,13 @@
   <title>Soporte - Electronics Components</title>
   <style>
     :root {
-      --primary-color: #2563eb;
-      --secondary-color: #1e40af;
-      --accent-color: #60a5fa;
-      --text-color: #1e293b;
-      --background-color: #f8fafc;
+            --primary-color: #e74c3c;
+      --secondary-color: #f39c12;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+      --text-color: #333;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --border-radius: 8px;
     }
 
     body {
@@ -49,13 +51,14 @@
       overflow: hidden;
     }
 
-    .faq-item {
-      padding: 1.5rem;
-      margin: 0.5rem 0;
-      background: #f1f5f9;
-      border-left: 4px solid var(--accent-color);
-      transition: transform 0.2s ease;
-    }
+   .faq-item {
+  padding: 1.5rem;
+  margin: 0.5rem 0;
+  background: #f1f5f9;
+  border-left: 4px solid var(--primary-color); /* Usando un color sólido */
+  transition: transform 0.2s ease;
+}
+
 
     .faq-item:hover {
       transform: translateX(8px);
@@ -116,11 +119,11 @@
       border-radius: 8px;
     }
 
-        .footer {
+          .footer {
       text-align: center;
       margin-top: 4rem;
       padding: 2rem;
-      background: var(--text-color);
+      background: var(--primary-color);
       color: white;
       border-radius: 0 0 16px 16px;
     }
@@ -148,11 +151,11 @@
         margin: 20px;
         padding: 20px;
       }
-      
+
       h1 {
         font-size: 2rem;
       }
-      
+
       .contact-info {
         flex-direction: column;
         gap: 1rem;
@@ -161,7 +164,7 @@
         flex-direction: ;
         gap: 1rem;
       }
-    
+
     }
   </style>
 </head>
@@ -169,7 +172,7 @@
   <div class="container">
     <h1>Centro de Soporte</h1>
     <p class="lead">Bienvenido al centro de soporte de <strong>Electronics Components</strong>. Estamos aquí para ayudarte con cualquier consulta o problema técnico.</p>
-    
+
     <div class="faq-list">
       <h2>Preguntas Frecuentes</h2>
       <div class="faq-item">
@@ -201,13 +204,13 @@
     <form action="mailto:info@tecnologiasonix.com" method="post" enctype="text/plain">
       <label for="nombre">Nombre completo</label>
       <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre">
-      
+
       <label for="email">Correo electrónico</label>
       <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
-      
+
       <label for="mensaje">Mensaje</label>
       <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describe tu consulta en detalle..."></textarea>
-      
+
       <input type="submit" value="Enviar Mensaje">
     </form>
   </div>
@@ -220,7 +223,7 @@
         <a href="index">Inicio</a>
       </nav>
       <p>&copy; 2024 Electronics Components. Todos los derechos reservados.</p>
-    
+
   </div>
 </body>
 </html>
